@@ -265,12 +265,70 @@ function setMenu(open) {
 }
 burger?.addEventListener('click', () =>
   setMenu(burger.getAttribute('aria-expanded') !== 'true'));
-menu?.addEventListener('click', (e) => {
-  if (e.target.closest('a')) setMenu(false);
-});
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && root.classList.contains('is-menu')) setMenu(false);
 });
+// ---- navigation & scrollspy ---------------------------------------------
+const navTargets = {
+  home: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+  work: () => {
+    const el = document.getElementById('universe');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  },
+  about: () => {
+    const el = document.getElementById('chrono');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  },
+  projects: () => {
+    const el = document.getElementById('gallery');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  },
+  contact: () => {
+    const el = document.getElementById('contact') || document.querySelector('.site-footer');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  },
+};
+
+document.querySelectorAll('a[data-nav]').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    const key = a.dataset.nav;
+    if (key && navTargets[key]) {
+      e.preventDefault();
+      navTargets[key]();
+      if (root.classList.contains('is-menu')) setMenu(false);
+    }
+  });
+});
+
+function updateScrollspy() {
+  const y = window.scrollY;
+  const h = window.innerHeight;
+  const uni = document.getElementById('universe');
+  const chrono = document.getElementById('chrono');
+  const gallery = document.getElementById('gallery');
+  const footer = document.getElementById('contact') || document.querySelector('.site-footer');
+
+  let active = 'home';
+  if (footer && (y + h >= document.documentElement.scrollHeight - 150)) {
+    active = 'contact';
+  } else if (gallery && y >= gallery.offsetTop - h * 0.4) {
+    active = 'projects';
+  } else if (chrono && y >= chrono.offsetTop - h * 0.4) {
+    active = 'about';
+  } else if (uni && y >= uni.offsetTop - h * 0.4) {
+    active = 'work';
+  }
+
+  document.querySelectorAll('.hdr__nav a, .menu a').forEach((a) => {
+    if (a.dataset.nav) {
+      a.classList.toggle('is-active', a.dataset.nav === active);
+    }
+  });
+}
+
+window.addEventListener('scroll', updateScrollspy, { passive: true });
+window.addEventListener('resize', debounce(updateScrollspy, 100), { passive: true });
+updateScrollspy();
 
 // The hero is position:fixed behind the flow, so once scene two covers it there
 // is nothing to see - stop decoding its video rather than burning battery on

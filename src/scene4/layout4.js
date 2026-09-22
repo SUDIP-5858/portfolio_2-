@@ -48,8 +48,8 @@ export const CARDS = [
     tint: [0.31, 0.317, 0.302] },
 ];
 
-// the central figure: crop box in frame px (his lighting is baked in)
-export const PERSON = { x: 718, y: 483, w: 160, h: 335 };
+// the central figure: crop box in frame px (brought forward, closer to camera)
+export const PERSON = { x: 558, y: 404, w: 480, h: 384 };
 
 // the floor's lit ellipses (centre x, centre y, rx, ry) and the overhead ring,
 // used by the live glints the canvas draws over the baked plate

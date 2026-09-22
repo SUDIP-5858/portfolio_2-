@@ -75,7 +75,7 @@ export class Chrono {
   async load() {
     const [grain, fig] = await Promise.all([
       loadImage('public/tex/grain.png'),
-      loadImage('public/years/figure.png?v=2'),
+      loadImage('public/years/figure.png?v=7'),
     ]);
     upload(this.gl, this.tex.grain, grain);
     upload(this.gl, this.tex.figure, fig);
@@ -317,7 +317,7 @@ export class Chrono {
       g.uniform1f(pr.u.uAspect, aspect);
       g.uniform1f(pr.u.uRings, s.rings);
       g.uniform2f(pr.u.uFloor, floorN[0] + camX, floorN[1] + camY);
-      g.uniform1f(pr.u.uCut, L.figure.feet / this.cssH - 0.055);
+      g.uniform1f(pr.u.uCut, L.figure.feet / this.cssH - 0.020);
       g.drawArrays(g.TRIANGLE_STRIP, 0, 4);
     }
 

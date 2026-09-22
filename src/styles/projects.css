@@ -103,6 +103,7 @@
 .gallery__person {
   position: absolute;
   display: block;
+  z-index: 10;
   opacity: 0;
   pointer-events: none;
   user-select: none;

@@ -14,10 +14,10 @@
 <link rel="preload" href="public/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="public/fonts/oswald-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="public/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="src/styles/app.css?v=2">
+<link rel="stylesheet" href="src/styles/app.css?v=3">
 <link rel="stylesheet" href="src/styles/universe.css?v=2">
 <link rel="stylesheet" href="src/styles/chrono.css?v=2">
-<link rel="stylesheet" href="src/styles/projects.css?v=2">
+<link rel="stylesheet" href="src/styles/projects.css?v=3">
 </head>
 <body>
 
@@ -25,7 +25,7 @@
      wordmark is drawn on the canvas so video can be clipped inside its letters -->
 <h1 class="sr-only">SUDIPTA — AI Engineer, Developer, Innovator. Welcome to my world.</h1>
 
-<div class="stage-wrap">
+<div class="stage-wrap" id="home">
   <canvas id="stage" aria-hidden="true"></canvas>
 
   <!-- ------------------------------------------------------------------ -->
@@ -35,7 +35,7 @@
                 vector-effect="non-scaling-stroke"/>
     </svg>
 
-    <a class="hdr__mark" href="#" aria-label="Sudipta, home">
+    <a class="hdr__mark" href="#home" aria-label="Sudipta, home" data-nav="home">
       <span class="mark-word">SUDIPTA</span>
     </a>
 
@@ -47,11 +47,11 @@
 
     <nav class="hdr__nav" aria-label="Primary">
       <ul>
-        <li><a href="#" class="is-active" data-nav>Home</a></li>
-        <li><a href="#" data-nav>Work</a></li>
-        <li><a href="#" data-nav>About</a></li>
-        <li><a href="#" data-nav>Projects</a></li>
-        <li><a href="#" data-nav>Contact</a></li>
+        <li><a href="#home" class="is-active" data-nav="home">Home</a></li>
+        <li><a href="#universe" data-nav="work">Work</a></li>
+        <li><a href="#chrono" data-nav="about">About</a></li>
+        <li><a href="#gallery" data-nav="projects">Projects</a></li>
+        <li><a href="#contact" data-nav="contact">Contact</a></li>
       </ul>
     </nav>
 
@@ -87,11 +87,11 @@
   <!-- ------------------------------------------------------------------ -->
   <nav class="menu" id="menu" aria-label="Primary, expanded" hidden>
     <ul>
-      <li><a href="#" class="is-active" data-nav>Home</a></li>
-      <li><a href="#" data-nav>Work</a></li>
-      <li><a href="#" data-nav>About</a></li>
-      <li><a href="#" data-nav>Projects</a></li>
-      <li><a href="#" data-nav>Contact</a></li>
+      <li><a href="#home" class="is-active" data-nav="home">Home</a></li>
+      <li><a href="#universe" data-nav="work">Work</a></li>
+      <li><a href="#chrono" data-nav="about">About</a></li>
+      <li><a href="#gallery" data-nav="projects">Projects</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
     <p class="menu__tag">••• Welcome to my world •••</p>
   </nav>
@@ -132,8 +132,8 @@
       <li>Node.js</li><li>Python</li><li>TypeScript</li><li>GSAP</li>
     </ul>
     <video id="uniFilm" muted playsinline loop preload="metadata"
-             poster="public/media/universe_sudipta.jpg" aria-hidden="true">
-        <source src="public/media/universe_sudipta.mp4" type="video/mp4">
+             poster="public/media/universe_sudipta.jpg?v=6" aria-hidden="true">
+        <source src="public/media/universe_sudipta.mp4?v=6" type="video/mp4">
       </video>
     <div class="universe__veil" id="uniVeil" aria-hidden="true"></div>
   </section>
@@ -179,7 +179,7 @@
       <div class="gallery__world">
         <div class="gallery__deck" id="galleryDeck"></div>
         <img class="gallery__person" id="galleryPerson"
-             src="public/projects/person.png?v=2" alt="" draggable="false">
+             src="public/projects/person.png?v=5" alt="" draggable="false">
       </div>
 
       <h2 class="g-label g-label--projects" id="galleryTitle">Projects</h2>
@@ -202,9 +202,9 @@
 </main>
 
 <!-- ====================================================================== -->
-<footer class="site-footer" aria-label="Closing">
+<footer class="site-footer" id="contact" aria-label="Closing">
   <div class="site-footer__bar">
-    <a href="mailto:deysudipta688@gmail.com" data-nav>Contact</a>
+    <a href="mailto:deysudipta688@gmail.com">Contact</a>
     <nav class="site-footer__soc" aria-label="Social">
       <a href="https://github.com/SUDIP-5858" rel="me" target="_blank">GitHub</a>
       <a href="https://linkedin.com/in/sudipta-dey-014b9b35b" rel="me" target="_blank">LinkedIn</a>
@@ -213,6 +213,6 @@
   </div>
 </footer>
 
-<script type="module" src="src/main.js?v=2"></script>
+<script type="module" src="src/main.js?v=11"></script>
 </body>
 </html>

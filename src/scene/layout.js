@@ -54,15 +54,15 @@ export function computeLayout(w, h) {
   // both ends: head and shoulders clear the cap line, legs continue below the
   // baseline, and the rest of him is glimpsed through the counters. Sized only
   // to the cap height he would be swallowed whole by the letters.
-  let heroH = capH * 1.35;
-  let feet = baseline + capH * 0.22;
+  let heroH = capH * 1.55;
+  let feet = baseline + capH * 0.35;
 
   if (portrait) {
     // on a phone the word is width-bound and short, so tying the man to it would
     // shrink him to a bystander; he is scaled to the viewport instead and the
     // wordmark crosses his torso
-    heroH = h * 0.54;
-    feet = h * 0.885;
+    heroH = h * 0.62;
+    feet = h * 0.92;
   }
 
   return {
@@ -75,7 +75,7 @@ export function computeLayout(w, h) {
     hero: { h: heroH, cx, feet },
     // clear of the header band and clear of his head; it renders in front of
     // the typography, so it stays readable wherever it lands
-    welcomeY: portrait ? (feet - heroH) - h * 0.075 : h * 0.175,
+    welcomeY: portrait ? (feet - heroH) - h * 0.075 : Math.max(h * 0.12, (feet - heroH) - 28),
     legend: portrait
       ? { x: w * 0.955, y: capTop - h * 0.052, h: 20, alignRight: true }
       : { x: w * REF.legend.x, y: h * REF.legend.y,

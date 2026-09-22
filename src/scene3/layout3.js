@@ -73,7 +73,7 @@ const REF = {
   // head rises only into the bottom rows of the 2023 card and his shoulders
   // clear its text block entirely: every card stays readable around him. The
   // ring system stays centred on the scene regardless.
-  figure: [0.3900, 0.9740, 0.412],  // centre x, feet y, height as frac of frame
+  figure: [0.4900, 1.0000, 0.330],  // centre x, feet y, height as frac of frame (pushed down)
   floor: [0.4900, 0.9550],   // centre of the ring system, at his feet
 };
 
