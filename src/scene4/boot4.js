@@ -56,7 +56,8 @@ export async function initGallery() {
     el.style.setProperty('--i', String(i));   // float dephasing
     el.innerHTML = `<span class="g-card__in">`
       + `<img src="public/projects/${c.id}.png" alt="" `
-      + `draggable="false" loading="eager" decoding="async"></span>`;
+      + `draggable="false" loading="eager" decoding="async">`
+      + `<span class="g-card__title-overlay">${c.title.replace('\n', ' ')}</span></span>`;
     deck.appendChild(el);
     return el;
   });
@@ -229,6 +230,154 @@ export async function initGallery() {
 
   labels.forEach((el, i) => el.style.setProperty('--li', String(i)));
 
+  // ---- project detail panel ------------------------------------------------
+  // Only the first four cards are real projects (p01–p04); the remaining eight
+  // are decorative room-dressing cards and stay as visual-only elements.
+  const REAL_CARD_COUNT = 4;
+
+  const projects = (() => {
+    try {
+      const el = document.getElementById('projectData');
+      return el ? JSON.parse(el.textContent) : [];
+    } catch { return []; }
+  })();
+
+  const backdrop = document.getElementById('projBackdrop');
+  const panel    = document.getElementById('projPanel');
+  const closeBtn = document.getElementById('projPanelClose');
+
+  if (backdrop && panel && projects.length) {
+    const numEl      = document.getElementById('projPanelNum');
+    const tagEl      = document.getElementById('projPanelTag');
+    const titleEl    = document.getElementById('projPanelTitle');
+    const descEl     = document.getElementById('projPanelDesc');
+    const problemWrap= document.getElementById('projPanelProblemWrap');
+    const problemEl  = document.getElementById('projPanelProblem');
+    const solutionWrap= document.getElementById('projPanelSolutionWrap');
+    const solutionEl = document.getElementById('projPanelSolution');
+    const metricsWrap= document.getElementById('projPanelMetricsWrap');
+    const metricsEl  = document.getElementById('projPanelMetrics');
+    const featsWrap  = document.getElementById('projPanelFeaturesWrap');
+    const featsEl    = document.getElementById('projPanelFeatures');
+    const aimlWrap   = document.getElementById('projPanelAIMLWrap');
+    const aimlEl     = document.getElementById('projPanelAIML');
+    const stackWrap  = document.getElementById('projPanelStackWrap');
+    const stackEl    = document.getElementById('projPanelStack');
+    const linksEl    = document.getElementById('projPanelLinks');
+    const pipelineWrap = document.getElementById('projPanelPipelineWrap');
+    const pipelineEl   = document.getElementById('projPanelPipeline');
+
+    function openPanel(data) {
+      if (!data) return;
+      if (numEl)   numEl.textContent   = data.num || '';
+      if (tagEl)   tagEl.textContent   = data.tag || '';
+      if (titleEl) titleEl.innerHTML   = (data.title || '').replace(/\n/g, '<br>');
+      if (descEl)  descEl.textContent  = data.desc || '';
+
+      if (problemWrap && problemEl) {
+        if (data.problem) { problemEl.textContent = data.problem; problemWrap.style.display = 'block'; }
+        else { problemWrap.style.display = 'none'; }
+      }
+      if (solutionWrap && solutionEl) {
+        if (data.solution) { solutionEl.textContent = data.solution; solutionWrap.style.display = 'block'; }
+        else { solutionWrap.style.display = 'none'; }
+      }
+      if (metricsWrap && metricsEl) {
+        if (data.metrics && data.metrics.length) {
+          metricsEl.innerHTML = data.metrics.map(m => `<li>${m}</li>`).join('');
+          metricsWrap.style.display = 'block';
+        } else { metricsWrap.style.display = 'none'; }
+      }
+      if (featsWrap && featsEl) {
+        if (data.features && data.features.length) {
+          featsEl.innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
+          featsWrap.style.display = 'block';
+        } else { featsWrap.style.display = 'none'; }
+      }
+      if (pipelineWrap && pipelineEl) {
+        if (data.pipeline && data.pipeline.length) {
+          pipelineEl.innerHTML = data.pipeline.map((step, i) =>
+            `<span class="proj-panel__pipe-step">${step}</span>${i < data.pipeline.length - 1 ? '<span class="proj-panel__pipe-arrow">→</span>' : ''}`
+          ).join('');
+          pipelineWrap.style.display = 'block';
+        } else { pipelineWrap.style.display = 'none'; }
+      }
+      if (aimlWrap && aimlEl) {
+        if (data.aiml) { aimlEl.textContent = data.aiml; aimlWrap.style.display = 'block'; }
+        else { aimlWrap.style.display = 'none'; }
+      }
+      if (stackWrap && stackEl) {
+        if (data.stack && data.stack.length) {
+          stackEl.innerHTML = data.stack.map(s => `<span class="proj-panel__pill">${s}</span>`).join('');
+          stackWrap.style.display = 'block';
+        } else { stackWrap.style.display = 'none'; }
+      }
+
+      if (linksEl) {
+        linksEl.innerHTML = '';
+        if (data.github) {
+          const a = document.createElement('a');
+          a.href      = data.github;
+          a.target    = '_blank';
+          a.rel       = 'noopener noreferrer';
+          a.className = 'proj-panel__link proj-panel__link--primary';
+          a.textContent = 'View on GitHub';
+          linksEl.appendChild(a);
+        }
+      }
+
+      backdrop.classList.add('is-open');
+      backdrop.removeAttribute('aria-hidden');
+      panel.setAttribute('tabindex', '-1');
+      document.body.style.overflow = 'hidden';
+      // move focus into the panel for accessibility
+      requestAnimationFrame(() => { closeBtn && closeBtn.focus(); });
+    }
+
+    function closePanel() {
+      backdrop.classList.remove('is-open');
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // wire real cards (0–3)
+    cards.forEach((el, i) => {
+      if (i >= REAL_CARD_COUNT) return;
+      el.addEventListener('click', () => openPanel(projects[i]));
+      // visual hint that this card is interactive (cursor is already pointer)
+      el.title = projects[i]?.title?.replace(/\n/g, ' — ') || '';
+      
+      // subtle 3D hover effect logic
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        // Calculate pointer position from -1 to 1 across the card
+        const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+        const inner = el.querySelector('.g-card__in');
+        if (inner) {
+          // Tilt max 8 degrees. translateZ already pushed in CSS, here we override to include rotations
+          inner.style.transform = `translateZ(30px) scale(1.022) rotateX(${y * -8}deg) rotateY(${x * 8}deg)`;
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        const inner = el.querySelector('.g-card__in');
+        if (inner) {
+          // Clear inline transform to allow CSS transition back to resting state
+          inner.style.transform = '';
+        }
+      });
+    });
+
+    // close on button, backdrop click, or ESC
+    closeBtn && closeBtn.addEventListener('click', closePanel);
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closePanel();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.classList.contains('is-open')) closePanel();
+    });
+  }
+
   // review hook: canvas only (the cards are DOM; screenshot the pane for those)
   window.__shot4 = async (name = 'gallery', at = null) => {
     const t = at !== null ? at : (performance.now() - state.started) / 1000;
@@ -241,3 +390,4 @@ export async function initGallery() {
 
   return { gallery, section };
 }
+

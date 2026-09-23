@@ -283,8 +283,12 @@ const navTargets = {
     const el = document.getElementById('gallery');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   },
+  certifications: () => {
+    const el = document.getElementById('certifications');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  },
   contact: () => {
-    const el = document.getElementById('contact') || document.querySelector('.site-footer');
+    const el = document.getElementById('connect') || document.getElementById('contact') || document.querySelector('.site-footer');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   },
 };
@@ -303,20 +307,26 @@ document.querySelectorAll('a[data-nav]').forEach((a) => {
 function updateScrollspy() {
   const y = window.scrollY;
   const h = window.innerHeight;
-  const uni = document.getElementById('universe');
   const chrono = document.getElementById('chrono');
+  const uni = document.getElementById('universe');
   const gallery = document.getElementById('gallery');
+  const certs = document.getElementById('certifications');
+  const connectSec = document.getElementById('connect');
   const footer = document.getElementById('contact') || document.querySelector('.site-footer');
 
   let active = 'home';
   if (footer && (y + h >= document.documentElement.scrollHeight - 150)) {
     active = 'contact';
+  } else if (connectSec && y >= connectSec.offsetTop - h * 0.4) {
+    active = 'contact';
+  } else if (certs && y >= certs.offsetTop - h * 0.4) {
+    active = 'certifications';
   } else if (gallery && y >= gallery.offsetTop - h * 0.4) {
     active = 'projects';
-  } else if (chrono && y >= chrono.offsetTop - h * 0.4) {
-    active = 'about';
   } else if (uni && y >= uni.offsetTop - h * 0.4) {
     active = 'work';
+  } else if (chrono && y >= chrono.offsetTop - h * 0.4) {
+    active = 'about';
   }
 
   document.querySelectorAll('.hdr__nav a, .menu a').forEach((a) => {
@@ -324,6 +334,11 @@ function updateScrollspy() {
       a.classList.toggle('is-active', a.dataset.nav === active);
     }
   });
+
+  const hdr = document.getElementById('hdr');
+  if (hdr) {
+    hdr.classList.toggle('is-scrolled', y > 40);
+  }
 }
 
 window.addEventListener('scroll', updateScrollspy, { passive: true });
@@ -375,4 +390,26 @@ window.__shot = async (name = 'shot', at = null) => {
 // live tuning of the letter surface while matching the reference art
 window.__tune = (k, v) => { app.stage[k] = v; return app.stage[k]; };
 
+// ---- scroll-reveal for certifications and connect sections ----------------
+// Uses the same IntersectionObserver pattern as the gallery's card entrance;
+// adds `.is-visible` which triggers the CSS transition already on the elements.
+if ('IntersectionObserver' in window) {
+  const revealTargets = [
+    document.getElementById('certifications'),
+    document.getElementById('connect'),
+  ].filter(Boolean);
+
+  const revealObs = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        revealObs.unobserve(e.target); // animate once
+      }
+    }
+  }, { threshold: 0.12 });
+
+  revealTargets.forEach((el) => revealObs.observe(el));
+}
+
 main().catch((e) => degrade(e.message));
+

@@ -63,6 +63,7 @@
 }
 
 .g-card__in {
+  position: relative;
   display: block;
   transform-style: preserve-3d;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -78,6 +79,38 @@
   height: auto;
   pointer-events: none;
   user-select: none;
+}
+
+.g-card__title-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(10px);
+  z-index: 10;
+  padding: 12px 20px 10px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: clamp(10px, 1vw, 15px);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.g-card:hover .g-card__title-overlay,
+.g-card:focus-visible .g-card__title-overlay {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateZ(30px);
 }
 
 /* hover: toward the camera, a touch brighter, its glow deepened — and the
@@ -207,4 +240,301 @@
 @media (prefers-reduced-motion: reduce) {
   .g-card__in { animation: none; }
   .g-label { transition-duration: 0.01ms; transition-delay: 0s; }
+}
+
+/* ==========================================================================
+   Project detail panel — slides in from the right when a card is clicked.
+   Styled entirely in Portfolio 2's voice: dark, Oswald, crimson accents.
+   ========================================================================== */
+
+.proj-panel-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.42s ease, visibility 0.42s;
+}
+.proj-panel-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.proj-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 201;
+  width: min(520px, 92vw);
+  background: #0a0203;
+  border-left: 1px solid rgba(222, 27, 28, 0.22);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.proj-panel-backdrop.is-open .proj-panel {
+  transform: translate3d(0, 0, 0);
+}
+
+/* grain veil matches the gallery scene's texture */
+.proj-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../../public/tex/grain.png') repeat;
+  background-size: 340px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.proj-panel__head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: clamp(22px, 5vh, 44px) clamp(24px, 6vw, 42px) 0;
+  gap: 16px;
+}
+
+.proj-panel__close {
+  flex: 0 0 auto;
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: var(--paper, #ededed);
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  padding: 9px 14px 7px;
+  cursor: pointer;
+  transition: border-color 0.28s ease, background 0.28s ease;
+  margin-top: 4px;
+}
+.proj-panel__close:hover {
+  border-color: var(--ink, #de1b1c);
+  background: rgba(222, 27, 28, 0.08);
+}
+
+.proj-panel__num {
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: clamp(9px, 0.8vw, 11px);
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink, #de1b1c);
+  margin: 0;
+}
+
+.proj-panel__body {
+  position: relative;
+  z-index: 1;
+  padding: clamp(18px, 3vh, 32px) clamp(24px, 6vw, 42px) clamp(36px, 7vh, 60px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex: 1;
+}
+
+.proj-panel__title {
+  margin: 0;
+  font-family: var(--disp, 'Anton', sans-serif);
+  font-size: clamp(28px, 5vw, 46px);
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+  color: var(--paper, #ededed);
+  background-color: var(--paper, #ededed);
+  background-image: url('../../public/tex/grunge.png');
+  background-size: 260px;
+  background-blend-mode: multiply;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: saturate(0.3) contrast(1.1) brightness(1.3);
+}
+
+.proj-panel__tag {
+  display: inline-block;
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.44em;
+  text-transform: uppercase;
+  color: var(--ink, #de1b1c);
+  border: 1px solid rgba(222, 27, 28, 0.4);
+  padding: 5px 10px 4px;
+  line-height: 1;
+}
+
+.proj-panel__rule {
+  width: 2.2em;
+  height: 1px;
+  background: var(--ink, #de1b1c);
+  border: none;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.proj-panel__desc {
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.04em;
+  color: rgba(237, 237, 237, 0.78);
+  margin: 0;
+}
+
+.proj-panel__section-label {
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--dim, #8a8a8a);
+  margin: 0 0 12px;
+}
+
+.proj-panel__features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.proj-panel__features li {
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: clamp(12px, 0.95vw, 14px);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: rgba(237, 237, 237, 0.72);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.55;
+}
+.proj-panel__features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 1px;
+  background: var(--ink, #de1b1c);
+}
+
+.proj-panel__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.proj-panel__pill {
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(237, 237, 237, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 5px 11px 4px;
+  line-height: 1;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.proj-panel__pill:hover {
+  border-color: rgba(222, 27, 28, 0.45);
+  color: var(--paper, #ededed);
+}
+
+.proj-panel__links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.proj-panel__link {
+  appearance: none;
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  padding: 12px 22px 10px;
+  transition: background 0.32s ease, color 0.32s ease, border-color 0.32s ease;
+}
+.proj-panel__link--primary {
+  background: var(--ink, #de1b1c);
+  color: var(--paper, #ededed);
+  border: 1px solid var(--ink, #de1b1c);
+}
+.proj-panel__link--primary:hover {
+  background: var(--ink-hot, #ff2a2b);
+  border-color: var(--ink-hot, #ff2a2b);
+}
+.proj-panel__link--ghost {
+  background: transparent;
+  color: var(--paper, #ededed);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.proj-panel__link--ghost:hover {
+  border-color: var(--ink, #de1b1c);
+  color: var(--ink, #de1b1c);
+}
+
+@media (max-width: 560px) {
+  .proj-panel {
+    width: 100vw;
+    border-left: none;
+    border-top: 1px solid rgba(222, 27, 28, 0.22);
+  }
+}
+
+/* Pipeline Dataflow */
+.proj-panel__pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+}
+
+.proj-panel__pipe-step {
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(237, 237, 237, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 5px 11px 4px;
+  line-height: 1;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.proj-panel__pipe-step:hover {
+  border-color: rgba(222, 27, 28, 0.45);
+  color: var(--paper, #ededed);
+}
+
+.proj-panel__pipe-arrow {
+  font-family: var(--ui, 'Oswald', sans-serif);
+  font-size: 11px;
+  color: var(--ink, #de1b1c);
+  padding: 0 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-panel-backdrop,
+  .proj-panel { transition-duration: 0.01ms; }
 }

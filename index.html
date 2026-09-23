@@ -25,46 +25,62 @@
      wordmark is drawn on the canvas so video can be clipped inside its letters -->
 <h1 class="sr-only">SUDIPTA — AI Engineer, Developer, Innovator. Welcome to my world.</h1>
 
+<!-- ------------------------------------------------------------------ -->
+<!-- Persistent Navigation Header across all sections/pages -->
+<header class="hdr" id="hdr">
+  <svg class="hdr__rule" id="hdrRule" aria-hidden="true" preserveAspectRatio="none">
+    <polyline id="hdrRulePath" fill="none" stroke="currentColor" stroke-width="1.25"
+              vector-effect="non-scaling-stroke"/>
+  </svg>
+
+  <a class="hdr__mark" href="#home" aria-label="Sudipta, home" data-nav="home">
+    <span class="mark-word">SUDIPTA</span>
+  </a>
+
+  <span class="hdr__div" aria-hidden="true"></span>
+
+  <p class="hdr__roles">
+    <span>AI Engineer</span><span>Developer</span><span>Innovator</span>
+  </p>
+
+  <nav class="hdr__nav" aria-label="Primary">
+    <ul>
+      <li><a href="#home" class="is-active" data-nav="home">Home</a></li>
+      <li><a href="#chrono" data-nav="about">About</a></li>
+      <li><a href="#universe" data-nav="work">Work</a></li>
+      <li><a href="#gallery" data-nav="projects">Projects</a></li>
+      <li><a href="#certifications" data-nav="certifications">Certifications</a></li>
+      <li><a href="#connect" data-nav="contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hdr__meta">
+    <span class="hdr__metaLabel">Portfolio — MMXXVI</span>
+    <span class="hdr__pips" aria-hidden="true"><i></i><i></i><i></i></span>
+  </div>
+
+  <button class="hdr__burger" id="burger" aria-expanded="false" aria-controls="menu">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span>
+    <span class="sr-only">Menu</span>
+  </button>
+</header>
+
+<!-- ------------------------------------------------------------------ -->
+<!-- Fullscreen Mobile Navigation Menu -->
+<nav class="menu" id="menu" aria-label="Primary, expanded" hidden>
+  <ul>
+    <li><a href="#home" class="is-active" data-nav="home">Home</a></li>
+    <li><a href="#chrono" data-nav="about">About</a></li>
+    <li><a href="#universe" data-nav="work">Work</a></li>
+    <li><a href="#gallery" data-nav="projects">Projects</a></li>
+    <li><a href="#certifications" data-nav="certifications">Certifications</a></li>
+    <li><a href="#connect" data-nav="contact">Contact</a></li>
+  </ul>
+  <p class="menu__tag">••• Welcome to my world •••</p>
+</nav>
+
 <div class="stage-wrap" id="home">
   <canvas id="stage" aria-hidden="true"></canvas>
-
-  <!-- ------------------------------------------------------------------ -->
-  <header class="hdr" id="hdr">
-    <svg class="hdr__rule" id="hdrRule" aria-hidden="true" preserveAspectRatio="none">
-      <polyline id="hdrRulePath" fill="none" stroke="currentColor" stroke-width="1.25"
-                vector-effect="non-scaling-stroke"/>
-    </svg>
-
-    <a class="hdr__mark" href="#home" aria-label="Sudipta, home" data-nav="home">
-      <span class="mark-word">SUDIPTA</span>
-    </a>
-
-    <span class="hdr__div" aria-hidden="true"></span>
-
-    <p class="hdr__roles">
-      <span>AI Engineer</span><span>Developer</span><span>Innovator</span>
-    </p>
-
-    <nav class="hdr__nav" aria-label="Primary">
-      <ul>
-        <li><a href="#home" class="is-active" data-nav="home">Home</a></li>
-        <li><a href="#universe" data-nav="work">Work</a></li>
-        <li><a href="#chrono" data-nav="about">About</a></li>
-        <li><a href="#gallery" data-nav="projects">Projects</a></li>
-        <li><a href="#contact" data-nav="contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <div class="hdr__meta">
-      <span class="hdr__metaLabel">Portfolio — MMXXVI</span>
-      <span class="hdr__pips" aria-hidden="true"><i></i><i></i><i></i></span>
-    </div>
-
-    <button class="hdr__burger" id="burger" aria-expanded="false" aria-controls="hdrNavMobile">
-      <span aria-hidden="true"></span><span aria-hidden="true"></span>
-      <span class="sr-only">Menu</span>
-    </button>
-  </header>
 
   <!-- ------------------------------------------------------------------ -->
   <div class="furniture" aria-hidden="true">
@@ -83,18 +99,6 @@
          navigation and fought with it -->
     <div class="grid-dots grid-dots--br" id="dotsBR"></div>
   </div>
-
-  <!-- ------------------------------------------------------------------ -->
-  <nav class="menu" id="menu" aria-label="Primary, expanded" hidden>
-    <ul>
-      <li><a href="#home" class="is-active" data-nav="home">Home</a></li>
-      <li><a href="#universe" data-nav="work">Work</a></li>
-      <li><a href="#chrono" data-nav="about">About</a></li>
-      <li><a href="#gallery" data-nav="projects">Projects</a></li>
-      <li><a href="#contact" data-nav="contact">Contact</a></li>
-    </ul>
-    <p class="menu__tag">••• Welcome to my world •••</p>
-  </nav>
 
   <!-- ------------------------------------------------------------------ -->
   <div class="boot" id="boot">
@@ -117,12 +121,144 @@
   <div class="hero-spacer" aria-hidden="true"></div>
 
   <!-- ==================================================================== -->
-  <!-- The creative-universe film itself, played as supplied. All labels and
-       cards are part of the footage; the DOM adds only what a screen reader
-       needs and a veil that breathes over the loop seam. -->
+  <!-- 2. ABOUT: Professional Profile -->
+  <section id="chrono" class="about-3d" aria-labelledby="aboutTitle">
+    <div class="about-3d__stage">
+      
+      <!-- Subtle progress line indicator -->
+      <div class="about-3d__progress-track">
+        <div class="about-3d__progress-line"></div>
+      </div>
+
+      <div class="about-3d__scene">
+        
+        <!-- Simple 3D Animated Background -->
+        <div class="about-3d__ambient">
+          <!-- Simple floating 3D nodes -->
+          <div class="simple-node" style="--px: 15%; --py: 25%; --pz: -800px; --d: 20s"></div>
+          <div class="simple-node" style="--px: 75%; --py: 15%; --pz: -1200px; --d: 25s"></div>
+          <div class="simple-node" style="--px: 85%; --py: 70%; --pz: -600px; --d: 22s"></div>
+          <div class="simple-node" style="--px: 20%; --py: 75%; --pz: -1000px; --d: 28s"></div>
+          <div class="simple-node" style="--px: 50%; --py: 50%; --pz: -1500px; --d: 30s"></div>
+          
+          <!-- Existing depth particles -->
+          <div class="particle" style="--px: 10%; --py: 20%; --pz: -400px; --s: 1.5; --d: 12s"></div>
+          <div class="particle" style="--px: 80%; --py: 15%; --pz: -200px; --s: 0.8; --d: 15s"></div>
+          <div class="particle" style="--px: 85%; --py: 70%; --pz: -600px; --s: 2.2; --d: 18s"></div>
+        </div>
+
+        <!-- ACT 1: WHO I AM -->
+        <article class="about-3d__act act-hero">
+          <div class="act-inner">
+            <h2 class="about-3d__title" id="aboutTitle">
+              I BUILD SYSTEMS<br><span class="text-ink">THAT THINK,</span><br>MOVE AND SCALE.
+            </h2>
+          </div>
+        </article>
+
+        <!-- ACT 2: Introduction -->
+        <article class="about-3d__act act-text">
+          <div class="act-inner">
+            <p class="about-3d__lead">
+              I'm an AI-focused developer combining artificial intelligence, machine learning, software engineering and modern frontend development to build useful digital products.
+            </p>
+            <p class="about-3d__body">
+              My engineering philosophy centers on the intersection of mathematical machine learning models and high-performance digital interfaces. Whether training custom classifiers for software defect analysis or building low-latency automation architectures, I prioritize production reliability, algorithmic clarity, and elegant user experience.
+            </p>
+          </div>
+        </article>
+
+        <!-- ACT 3: AI & Machine Learning -->
+        <article class="about-3d__act act-skills">
+          <div class="act-inner">
+            <h3 class="about-3d__heading">AI & Machine Learning</h3>
+            <p class="about-3d__body">
+              Architecting custom deep learning pipelines, AST-level software vulnerability classifiers, zero-shot LLM reasoning agents, and high-precision feature extraction engines.
+            </p>
+            <div class="about-3d__cards">
+              <span class="about-3d__card">PyTorch</span>
+              <span class="about-3d__card">Scikit-learn</span>
+              <span class="about-3d__card">AST Parsers</span>
+              <span class="about-3d__card">LLM Agents</span>
+              <span class="about-3d__card">NLP</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACT 4: Software Engineering -->
+        <article class="about-3d__act act-skills">
+          <div class="act-inner">
+            <h3 class="about-3d__heading">Software Engineering</h3>
+            <p class="about-3d__body">
+              Engineering robust, scalable software architectures with strict type contracts, modular defect isolation, and automated pipelines.
+            </p>
+            <div class="about-3d__cards">
+              <span class="about-3d__card">Python</span>
+              <span class="about-3d__card">TypeScript</span>
+              <span class="about-3d__card">Clean Architecture</span>
+              <span class="about-3d__card">CI/CD</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACT 5: Frontend Development -->
+        <article class="about-3d__act act-skills">
+          <div class="act-inner">
+            <h3 class="about-3d__heading">Frontend Development</h3>
+            <p class="about-3d__body">
+              Crafting high-fidelity, cinematic web applications with micro-interactions, WebGL/Three.js spatial scenes, and fluid typography.
+            </p>
+            <div class="about-3d__cards">
+              <span class="about-3d__card">React 19</span>
+              <span class="about-3d__card">Next.js</span>
+              <span class="about-3d__card">Tailwind CSS</span>
+              <span class="about-3d__card">GSAP / Motion</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACT 6: Backend Development -->
+        <article class="about-3d__act act-skills">
+          <div class="act-inner">
+            <h3 class="about-3d__heading">Backend Development</h3>
+            <p class="about-3d__body">
+              Engineering low-latency asynchronous microservices, RESTful and WebSocket streaming endpoints, robust relational schemas, and sub-50ms API throughput.
+            </p>
+            <div class="about-3d__cards">
+              <span class="about-3d__card">FastAPI</span>
+              <span class="about-3d__card">Node.js</span>
+              <span class="about-3d__card">PostgreSQL</span>
+              <span class="about-3d__card">Redis</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACT 7: Final Profile -->
+        <article class="about-3d__act act-profile">
+          <div class="act-inner profile-grid">
+            <div class="profile-col">
+              <h3 class="profile-label">Focus</h3>
+              <p class="profile-val">Production Ready Architecture</p>
+            </div>
+            <div class="profile-col">
+              <h3 class="profile-label">Education</h3>
+              <p class="profile-val">B.Tech CSE (AIML) · CGPA 7.27</p>
+            </div>
+            <div class="profile-col">
+              <h3 class="profile-label">Location</h3>
+              <p class="profile-val">Kolkata, India</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- 3. WORK: The AI Universe -->
   <section class="universe" id="universe" aria-labelledby="uniTitle">
     <header class="universe__title" id="uniTitle">
-      <p class="universe__over">Scene 02</p>
       <h2 class="universe__name">The AI<br>Universe</h2>
       <p class="universe__sub">Tools · Systems · Models · Impact</p>
     </header>
@@ -136,39 +272,6 @@
         <source src="public/media/universe_sudipta.mp4?v=6" type="video/mp4">
       </video>
     <div class="universe__veil" id="uniVeil" aria-hidden="true"></div>
-  </section>
-
-  <!-- ==================================================================== -->
-  <section class="chrono" id="chrono" aria-labelledby="chronoTitle">
-    <div class="chrono__pin">
-      <canvas id="chronoStage" aria-hidden="true"></canvas>
-
-      <h2 class="chrono__title" id="chronoTitle">
-        <span>A</span><span>Journey</span><span>Through</span><span>Time</span>
-      </h2>
-      <p class="chrono__rail" aria-hidden="true">
-        <i></i>
-        <span>Ideas</span><span>Experiences</span><span>People</span>
-        <span>Projects</span><span>Me</span>
-        <i></i>
-      </p>
-
-      <p class="chrono__hint" aria-hidden="true">
-        Move<br>to travel<br>through time<i></i>
-      </p>
-      <p class="chrono__note chrono__note--bl" aria-hidden="true">
-        Same<br>curiosity<br>a brighter<br>tomorrow
-      </p>
-      <p class="chrono__note chrono__note--br" aria-hidden="true">
-        Still<br>designing<br>what's<br>next<i></i>
-      </p>
-
-      <div class="chrono__deck" id="chronoDeck"></div>
-
-      <!-- the figure's own layer, stacked over the deck: he stands in front
-           of the timeline, looking at his journey -->
-      <canvas id="chronoFront" aria-hidden="true"></canvas>
-    </div>
   </section>
 
   <!-- ==================================================================== -->
@@ -202,6 +305,219 @@
 </main>
 
 <!-- ====================================================================== -->
+<!-- Project Detail Panel — slide-in drawer, Portfolio 2 design language    -->
+<div class="proj-panel-backdrop" id="projBackdrop" aria-hidden="true">
+  <aside class="proj-panel" id="projPanel" role="dialog" aria-modal="true" aria-labelledby="projPanelTitle">
+    <div class="proj-panel__head">
+      <p class="proj-panel__num" id="projPanelNum">01 / 04</p>
+      <button class="proj-panel__close" id="projPanelClose" aria-label="Close project detail">Close ✕</button>
+    </div>
+    <div class="proj-panel__body">
+      <p class="proj-panel__tag" id="projPanelTag">AI · Automation</p>
+      <h3 class="proj-panel__title" id="projPanelTitle">Project Title</h3>
+      <hr class="proj-panel__rule">
+      <p class="proj-panel__desc" id="projPanelDesc"></p>
+      
+      <div id="projPanelProblemWrap" style="display: none; margin-top: 24px;">
+        <p class="proj-panel__section-label">Problem</p>
+        <p class="proj-panel__text" id="projPanelProblem" style="font-family: var(--ui); font-size: 13px; color: var(--dim); line-height: 1.6;"></p>
+      </div>
+
+      <div id="projPanelSolutionWrap" style="display: none; margin-top: 24px;">
+        <p class="proj-panel__section-label">Solution</p>
+        <p class="proj-panel__text" id="projPanelSolution" style="font-family: var(--ui); font-size: 13px; color: var(--dim); line-height: 1.6;"></p>
+      </div>
+
+      <div id="projPanelMetricsWrap" style="display: none; margin-top: 24px;">
+        <p class="proj-panel__section-label">Key Metrics</p>
+        <ul class="proj-panel__features" id="projPanelMetrics"></ul>
+      </div>
+
+      <div id="projPanelFeaturesWrap">
+        <p class="proj-panel__section-label">Key Features</p>
+        <ul class="proj-panel__features" id="projPanelFeatures"></ul>
+      </div>
+      
+      <div id="projPanelPipelineWrap" style="display: none; margin-top: 24px;">
+        <p class="proj-panel__section-label">Pipeline Dataflow</p>
+        <div class="proj-panel__pipeline" id="projPanelPipeline"></div>
+      </div>
+
+      <div id="projPanelAIMLWrap" style="display: none; margin-top: 24px;">
+        <p class="proj-panel__section-label">AI / ML</p>
+        <p class="proj-panel__text" id="projPanelAIML" style="font-family: var(--ui); font-size: 13px; color: var(--dim); line-height: 1.6;"></p>
+      </div>
+
+      <div id="projPanelStackWrap">
+        <p class="proj-panel__section-label">Tech Stack</p>
+        <div class="proj-panel__stack" id="projPanelStack"></div>
+      </div>
+      <div class="proj-panel__links" id="projPanelLinks"></div>
+    </div>
+  </aside>
+</div>
+
+<!-- Project data — single source of truth for the panel -->
+<script type="application/json" id="projectData">
+[
+  {
+    "index": 0,
+    "num": "01 / 04",
+    "tag": "AI · Automation · Production MVP",
+    "title": "AI Email Automation\nInboxOS",
+    "desc": "Autonomous zero-shot email triage & contextual response generation pipeline.",
+    "problem": "Enterprise teams waste countless hours manually triaging incoming communications and writing routine responses without consistent knowledge bases.",
+    "solution": "An enterprise-grade intelligent email automation engine that reads incoming communications, extracts intent and sentiment, matches past enterprise knowledge, and synthesizes accurate, context-aware email responses via asynchronous LLM orchestration.",
+    "metrics": [
+      "Inference Latency: <45ms (Asynchronous streaming)",
+      "Intent Accuracy: 99.4% (Zero-shot classification)",
+      "Auto-Triage Speed: 1,200/hr (High throughput pipeline)"
+    ],
+    "features": [
+      "OAuth2 token rotation & webhook integration with Google Gmail REST API",
+      "Contextual sentiment extraction with custom confidence threshold safety gates",
+      "Asynchronous FastAPI microservice architecture with sub-50ms queue dispatch",
+      "Dynamic knowledge injection for automated professional reply synthesis"
+    ],
+    "pipeline": ["Gmail Webhook Listener", "Async Intent Tokenizer", "LLM Reasoning Engine", "Safety Guardrails", "Outbox Dispatcher"],
+    "aiml": "Zero-Shot Prompt Chaining with Context Verification and intent classification pipeline.",
+    "stack": ["Python", "FastAPI", "LLM / OpenAI", "Gmail API", "AsyncIO", "Pydantic"],
+    "github": "https://github.com/SUDIP-5858"
+  },
+  {
+    "index": 1,
+    "num": "02 / 04",
+    "tag": "Machine Learning · Security · Benchmarked",
+    "title": "Network Intrusion\nDetection System",
+    "desc": "Machine learning cybersecurity inspector for real-time packet anomaly classification.",
+    "problem": "Traditional signature-based intrusion detection fails to identify zero-day attacks and novel DDOS vectors due to strict rule definitions.",
+    "solution": "A cyber defense intelligence system utilizing supervised and ensemble machine learning algorithms to inspect packet metadata, detect malicious payload vectors, identify port scans and DDoS signatures, and alert system administrators with low false-positive rates.",
+    "metrics": [
+      "Inspection Rate: 4,820/s (Real-time packet parsing)",
+      "False Positive Rate: 0.012% (Tuned decision thresholds)",
+      "Feature Dimensions: 42 Vector (Flow & protocol metrics)"
+    ],
+    "features": [
+      "Engineered feature pipeline processing 42 continuous and categorical network attributes",
+      "Trained dual Support Vector Machine (SVM) and Random Forest ensemble classifiers",
+      "Optimized confusion matrix for zero-tolerance false negatives on high-threat payloads",
+      "Exportable lightweight ONNX inference runtime for bare-metal edge gateway deployment"
+    ],
+    "pipeline": ["Packet Sniffer & Preprocessor", "Vector Feature Extractor", "Dual SVM/RF Classifier", "Anomaly Scorer", "Alerting Subsystem"],
+    "aiml": "Support Vector Classifier (RBF Kernel) & Random Forest Ensemble on 42-dimension feature vector.",
+    "stack": ["Python", "Scikit-Learn", "Pandas", "NumPy", "Ensemble ML", "ONNX"],
+    "github": "https://github.com/SUDIP-5858"
+  },
+  {
+    "index": 2,
+    "num": "03 / 04",
+    "tag": "AI · Code Intelligence · Research MVP",
+    "title": "AI-Based Bug\nDetection System",
+    "desc": "AST syntactic & semantic code analysis for defect localization and vulnerability scanning.",
+    "problem": "Static analyzers lack contextual understanding, and standard tests miss subtle logic defects or structural anomalies before CI/CD deployment.",
+    "solution": "An automated code intelligence engine combining Abstract Syntax Tree (AST) tree-traversal algorithms with machine learning classifiers to predict logic smells, memory leaks, null references, and security vulnerabilities prior to continuous integration deployment.",
+    "metrics": [
+      "Parsed Nodes/Sec: 3,400+ (High-speed AST traversal)",
+      "Defect Recall: 96.8% (Validated across code testbeds)",
+      "Languages Tested: Multi-AST (Extensible grammar engine)"
+    ],
+    "features": [
+      "Direct parsing of source files into Abstract Syntax Trees with customized recursive node visitors",
+      "Syntactic rule engine coupled with learned vector embeddings for subtle logic defects",
+      "Generates automated human-readable remediation suggestions and patch recommendations",
+      "Pre-commit hook integration to block defective commits before merge into main branches"
+    ],
+    "pipeline": ["Source Grammar Lexer", "AST Generator & Visitor", "Code Vectorizer", "ML Defect Classifier", "Remediation Formatter"],
+    "aiml": "Recursive AST Graph Traversal coupled with Transformer Embeddings.",
+    "stack": ["Python", "AST Parsers", "Machine Learning", "Code Intelligence", "Static Analysis"],
+    "github": "https://github.com/SUDIP-5858"
+  },
+  {
+    "index": 3,
+    "num": "04 / 04",
+    "tag": "EdTech · Full Stack · Active Platform",
+    "title": "AI Student\nInquiry Platform",
+    "desc": "Semantic knowledge retrieval and interactive curriculum intelligence platform.",
+    "problem": "Students struggle to navigate disjointed educational resources and require immediate, verified answers without hallucinatory information.",
+    "solution": "A cloud-native educational discovery platform empowering students to query complex academic concepts through natural language and receive verified curriculum citations, interactive code snippets, and structured conceptual roadmaps in real-time.",
+    "metrics": [
+      "Semantic Match: 99.1% (Curriculum knowledge graph)",
+      "Realtime Sync: <20ms (Firebase Firestore backend)",
+      "Query Resolution: Instant (Cached vector indexing)"
+    ],
+    "features": [
+      "Interactive student web workspace built with modern responsive React and glassmorphic UI",
+      "Semantic document ranking indexing textbooks, lecture slides, and coding assignments",
+      "Secure Firebase authentication, real-time query history sync, and bookmarking system",
+      "Step-by-step conceptual breakdown with syntax-highlighted code demonstrations"
+    ],
+    "pipeline": ["React Client Interface", "Query Vector Normalizer", "Semantic Index Search", "Firebase Realtime Store", "Curriculum Knowledge Graph"],
+    "aiml": "Cosine Similarity over Dense Curriculum Embeddings and Semantic Index Search.",
+    "stack": ["React", "Python", "Firebase Firestore", "NLP", "Tailwind CSS"],
+    "github": "https://github.com/SUDIP-5858"
+  }
+]
+</script>
+
+<!-- ====================================================================== -->
+<!-- Certifications Section                                                  -->
+<section class="certs" id="certifications" aria-labelledby="certsTitle">
+  <div class="certs__inner">
+    <h2 class="certs__heading" id="certsTitle">Certified</h2>
+    <div class="certs__grid">
+
+      <!-- Certificate 1: Intel Corporation -->
+      <article class="cert-card" style="--ci:0">
+        <p class="cert-card__issuer">Intel Corporation</p>
+        <h3 class="cert-card__name">AI &amp; ML Industrial Training Program</h3>
+        <p class="cert-card__desc">Completed a specialised 10-day intensive machine learning curriculum under Intel Corporation mentorship. Focus areas included feature vectorisation, data normalisation, supervised and unsupervised model training, and performance validation diagnostics.</p>
+        <hr class="cert-card__rule">
+        <div class="cert-card__meta">
+          <span class="cert-card__badge">10-Day Intensive</span>
+          <span class="cert-card__badge">Intel AI Academy</span>
+          <a href="intel.pdf" target="_blank" class="cert-card__link">View Credential</a>
+        </div>
+      </article>
+
+      <!-- Certificate 2: Machine Learning & AI using Advanced Python -->
+      <article class="cert-card" style="--ci:1">
+        <p class="cert-card__issuer">Professional Development</p>
+        <h3 class="cert-card__name">Machine Learning &amp; AI Model Development using Advanced Python</h3>
+        <p class="cert-card__desc">Comprehensive programme covering advanced Python programming for machine learning and artificial intelligence model development, including deep-learning fundamentals, model architecture design and production deployment practices.</p>
+        <hr class="cert-card__rule">
+        <div class="cert-card__meta">
+          <span class="cert-card__badge">Machine Learning</span>
+          <span class="cert-card__badge">Advanced Python</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
+<!-- Connect / Let's Collaborate Section                                     -->
+<section class="connect" id="connect" aria-labelledby="connectTitle">
+  <div class="connect__inner">
+    <h2 class="connect__heading" id="connectTitle">Let's<br>Connect</h2>
+    <p class="connect__body">
+      I'm an AI Engineer and Creative Developer based in Kolkata, India — graduating B.Tech in Computer Science &amp; Engineering (AIML) from Brainware University in 2026. I build autonomous AI systems, full-stack applications and machine learning architectures. If you have a challenging problem or an exciting opportunity, I'd love to hear from you.
+    </p>
+    <div class="connect__cta">
+      <a href="mailto:deysudipta688@gmail.com" class="connect__btn connect__btn--primary" id="connectEmail">Send a Message</a>
+      <a href="https://github.com/SUDIP-5858" target="_blank" rel="me" class="connect__btn connect__btn--ghost">View GitHub</a>
+    </div>
+    <nav class="connect__socials" aria-label="Social links">
+      <a href="mailto:deysudipta688@gmail.com" class="connect__social">deysudipta688@gmail.com</a>
+      <span class="connect__div" aria-hidden="true"></span>
+      <a href="https://github.com/SUDIP-5858" target="_blank" rel="me" class="connect__social">GitHub</a>
+      <span class="connect__div" aria-hidden="true"></span>
+      <a href="https://linkedin.com/in/sudipta-dey-014b9b35b" target="_blank" rel="me" class="connect__social">LinkedIn</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ====================================================================== -->
 <footer class="site-footer" id="contact" aria-label="Closing">
   <div class="site-footer__bar">
     <a href="mailto:deysudipta688@gmail.com">Contact</a>
@@ -212,7 +528,40 @@
     <small class="site-footer__c">&copy; 2026 Sudipta Dey &mdash; All rights reserved</small>
   </div>
 </footer>
+<!-- ====================================================================== -->
+<!-- AI Assistant Widget                                                    -->
+<div id="aiChatWidget" class="chat-widget" aria-hidden="true">
+  <button id="chatToggleBtn" class="chat-widget__toggle" aria-label="Open AI Assistant">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+  
+  <div id="chatPanel" class="chat-panel">
+    <div class="chat-panel__header">
+      <div class="chat-panel__title">AI Assistant</div>
+      <button id="chatCloseBtn" class="chat-panel__close" aria-label="Close chat">×</button>
+    </div>
+    
+    <div id="chatMessages" class="chat-panel__messages">
+      <div class="chat-message chat-message--ai">
+        <div class="chat-message__bubble">Hello! I'm Sudipta's AI assistant. Ask me anything about his projects, skills, or experience.</div>
+      </div>
+    </div>
+    
+    <div class="chat-panel__input-area">
+      <textarea id="chatInput" class="chat-panel__input" placeholder="Type your message..." rows="1"></textarea>
+      <button id="chatSendBtn" class="chat-panel__send" aria-label="Send message">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
 
 <script type="module" src="src/main.js?v=11"></script>
+<script type="module" src="src/chat.js"></script>
 </body>
 </html>

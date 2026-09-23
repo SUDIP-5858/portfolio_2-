@@ -11,9 +11,16 @@ import { createGL } from '../gl/renderer.js';
 import { Chrono } from './chrono.js';
 import { YEARS, timeAt } from './layout3.js';
 import { T3 } from './timeline3.js';
+import { initAbout3D } from './about3d.js';
 
 export async function initChrono() {
   const section = document.getElementById('chrono');
+  
+  // If we find the new 3D structure, initialize that instead
+  if (section && section.classList.contains('about-3d')) {
+    return initAbout3D();
+  }
+
   const canvas = document.getElementById('chronoStage');
   const deck = document.getElementById('chronoDeck');
   if (!section || !canvas || !deck) return null;

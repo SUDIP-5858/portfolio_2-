@@ -1,0 +1,87 @@
+main .sticky-promo-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-info-accent);
+    color: white;
+    padding: 12px;
+    padding-right: 36px;
+    font-weight: 900;
+    z-index: 10;
+}
+
+body[data-device="mobile"] main .sticky-promo-bar.rounded {
+    border-radius: 10px;
+    margin: 11px 24px 16px 24px;
+    font-weight: 300;
+    padding: 12px 24px 17px 24px;
+}
+
+main .sticky-promo-bar:not(.rounded) a:any-link {
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 3px 10px 5px 10px;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 400;
+    font-size: 0.9em;
+    white-space: nowrap;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+main .sticky-promo-bar.rounded a:any-link {
+    color: white;
+    text-decoration: underline;
+    white-space: nowrap;
+    font-style: initial;
+}
+
+main .sticky-promo-bar.rounded p {
+    display: inline;
+    font-size: var(--body-font-size-m);
+    margin: 0;
+    line-height: normal;
+}
+
+main .sticky-promo-bar .close {
+    color: white;
+    position: absolute;
+    margin-top: 0;
+    margin-left: 0;
+    width: 21px;
+    height: 21px;
+    top: 18px;
+    right: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+main .sticky-promo-bar.rounded .close {
+    display: none;
+}
+
+main .sticky-promo-bar .close:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    width: 21px;
+    height: 1px;
+    background-color: currentColor;
+    transform: rotate(-45deg);
+    left: 0;
+}
+
+main .sticky-promo-bar .close:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    width: 21px;
+    height: 1px;
+    background-color: currentColor;
+    transform: rotate(45deg);
+    left: 0;
+}

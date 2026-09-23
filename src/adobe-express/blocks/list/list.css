@@ -1,0 +1,61 @@
+main .list {
+    max-width: 375px;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+main .list .item {
+    margin-bottom: 50px;
+    width: 310px;
+}
+
+main .list .item-title {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-align: center;
+}
+
+main .list .item-text {
+    margin-top: 0;
+    font-size: 14px;
+    color: rgb(40, 60, 96);
+    text-align: center;
+    line-height: 1.4;
+}
+
+main li, p {
+  line-height: 200%
+}
+
+@media (min-width: 900px) {
+  main .list {
+   max-width: 600px;
+  }
+  main .list .item {
+    width: auto;
+  }
+}
+@media (min-width: 1200px) {
+  main .list {
+    max-width: 1140px;
+  }
+
+  main .list .item {
+    padding: 20px;
+  }
+
+  main .list .item {
+    width: 220px;
+  }
+}
+
+main .list > div > div > :first-child {
+  margin-top: 0;
+}
+
+main .list > div > div > :last-child {
+  margin-bottom: 0;
+}
