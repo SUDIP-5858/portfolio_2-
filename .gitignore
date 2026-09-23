@@ -4,3 +4,4 @@ scratch/
 .claude/
 .DS_Store
 Thumbs.db
+.env
